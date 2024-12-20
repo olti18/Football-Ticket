@@ -81,33 +81,4 @@ public class SwaggerConfiguration {
 
 
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests(
-//                authorizeRequests -> authorizeRequests.requestMatchers("/swagger-ui/**")
-//                        .permitAll()
-//                        .requestMatchers("/v3/api-docs*/**")
-//                        .permitAll());
-//
-//        return http.build();
-//    }
-
-
-
-
-
-
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()  // Kjo është e deprecializuar, duhet ta zëvendësojmë me authorizeHttpRequests()
-//                .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**")
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated();
-//
-//        return http.build(); // Ndërtojmë dhe kthejmë objektin e konfigurimit
-//    }
-
 }
