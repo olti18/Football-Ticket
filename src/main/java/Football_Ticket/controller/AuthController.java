@@ -86,6 +86,36 @@ public class AuthController {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//    @Value("${keycloak.auth-server-url}")
+//    private String keycloakServerUrl;
+//
+//    @Value("${keycloak.realm}")
+//    private String realm;
+//
+//    @Value("${keycloak.resource}")
+//    private String clientId;
+//
+//    @Value("${keycloak.credentials.secret:}")
+//    private String clientSecret;
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
         //String tokenEndpoint = keycloakServerUrl + "/realms/" + realm + "/protocol/openid-connect/token";

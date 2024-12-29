@@ -19,7 +19,6 @@ repositories {
 
 dependencies {
 
-
 	// Spring Boot Security dhe Web
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'

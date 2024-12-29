@@ -21,7 +21,7 @@ public class Reservation {
     private Ticket ticket;
 
     @Column(nullable = false)
-    private String userId; // ID e përdoruesit nga Keycloak (UUID)
+    private String userId; // ID e përdoruesit nga Keycloak
 
     @Column(nullable = false)
     private LocalDateTime reservationTime;

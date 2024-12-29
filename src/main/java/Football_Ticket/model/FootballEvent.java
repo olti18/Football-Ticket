@@ -27,5 +27,4 @@ public class FootballEvent {
     @Column(nullable = false)
     private int availableTickets;
 
-    // Getters dhe Setters
 }
