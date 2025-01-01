@@ -19,6 +19,11 @@ repositories {
 
 dependencies {
 
+	implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.6.3'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+	// https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
+	implementation 'org.hibernate.validator:hibernate-validator:9.0.0.CR1'
+
 	// Spring Boot Security dhe Web
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
