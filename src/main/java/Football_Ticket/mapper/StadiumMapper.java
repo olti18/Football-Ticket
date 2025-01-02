@@ -36,6 +36,7 @@
 //}
 package Football_Ticket.mapper;
 
+import Football_Ticket.Dto.StadiumCreateDTO;
 import Football_Ticket.Dto.StadiumDTO;
 import Football_Ticket.model.Stadium;
 import org.mapstruct.Mapper;
@@ -51,7 +52,9 @@ public interface StadiumMapper {
     @Mapping(source = "location", target = "location")
     Stadium toEntity(StadiumDTO stadiumDTO);
 
-  
+    @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "updatedAt", expression = "java(java.time.LocalDateTime.now())")
+    Stadium toEntity(StadiumCreateDTO stadiumCreateDTO);
 //    StadiumDTO toDTO(Stadium stadium);
 //
 //    // Map StadiumDTO to Stadium
