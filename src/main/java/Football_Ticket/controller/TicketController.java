@@ -1,13 +1,49 @@
 package Football_Ticket.controller;
 
 
+import Football_Ticket.Dto.TicketDTO;
+import Football_Ticket.service.Impl.TicketService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/tickets")
 public class TicketController {
 
+    @Autowired
+    private TicketService ticketService;
 
+    @GetMapping
+    public ResponseEntity<List<TicketDTO>> getAllTickets() {
+        return ResponseEntity.ok(ticketService.getAllTickets());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TicketDTO> getTicketById(@PathVariable String id) {
+        return ResponseEntity.ok(ticketService.getTicketById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.createTicket(dto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TicketDTO> updateTicket(
+            @PathVariable String id,
+            @RequestBody TicketDTO dto) {
+        return ResponseEntity.ok(ticketService.updateTicket(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
+        ticketService.deleteTicket(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 

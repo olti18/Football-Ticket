@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TicketMapper {
-    // Map Entity to DTO
-    public TicketDTO mapToDTO(Ticket ticket) {
+    public TicketDTO toDTO(Ticket ticket) {
         TicketDTO dto = new TicketDTO();
         dto.setId(ticket.getId());
         dto.setMatchId(ticket.getMatch().getId());
@@ -21,10 +20,8 @@ public class TicketMapper {
         return dto;
     }
 
-    // Map DTO to Entity
-    public Ticket mapToEntity(TicketDTO dto, Match match) {
+    public Ticket toEntity(TicketDTO dto) {
         Ticket ticket = new Ticket();
-        ticket.setMatch(match);
         ticket.setSeatNumber(dto.getSeatNumber());
         ticket.setPrice(dto.getPrice());
         ticket.setPaid(dto.isPaid());

@@ -1,5 +1,6 @@
 package Football_Ticket.Dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Data
 public class TicketDTO {
 
     private String id;
@@ -18,5 +20,4 @@ public class TicketDTO {
     private LocalDateTime purchaseDate;
     private String qrCode;
     private String status;
-
 }
