@@ -6,6 +6,7 @@ import Football_Ticket.model.Match;
 import Football_Ticket.model.Stadium;
 import Football_Ticket.repository.MatchRepository;
 import Football_Ticket.repository.StadiumRepository;
+import Football_Ticket.service.MatchService;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,13 +17,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MatchService {
+public class MatchServiceImpl implements MatchService {
 
     private final MatchRepository matchRepository;
     private final StadiumRepository stadiumRepository;
     private final MatchMapper matchMapper;
 
-    public MatchService(MatchRepository matchRepository, StadiumRepository stadiumRepository, MatchMapper matchMapper) {
+    public MatchServiceImpl(MatchRepository matchRepository, StadiumRepository stadiumRepository, MatchMapper matchMapper) {
         this.matchRepository = matchRepository;
         this.stadiumRepository = stadiumRepository;
         this.matchMapper = matchMapper;
