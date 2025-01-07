@@ -15,23 +15,13 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    @PostMapping("/create")
-    public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentRequestDTO request) {
+    @PostMapping("/create/{ticketId}")
+    public ResponseEntity<String> createPaymentIntent(@PathVariable String ticketId) {
         try {
-            PaymentIntent paymentIntent = paymentService.createPayment(request);
-            return ResponseEntity.ok(paymentIntent.getClientSecret());
+            PaymentIntent paymentIntent = paymentService.createPayment(ticketId);
+            return ResponseEntity.ok("Payment Successful: " + paymentIntent.getStatus());
         } catch (StripeException e) {
-            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+            return ResponseEntity.badRequest().body("Payment Failed: " + e.getMessage());
         }
-    }
-
-    @GetMapping("/success")
-    public ResponseEntity<String> paymentSuccess() {
-        return ResponseEntity.ok("Payment Successful");
-    }
-
-    @GetMapping("/cancel")
-    public ResponseEntity<String> paymentCancel() {
-        return ResponseEntity.ok("Payment Canceled");
     }
 }
