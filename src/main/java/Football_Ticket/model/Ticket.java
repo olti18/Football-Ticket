@@ -21,6 +21,10 @@ public class Ticket {
     @JoinColumn(name = "match_id", nullable = false)
     private Match match;
 
+    @ManyToOne
+    @JoinColumn(name = "seating_section_id", nullable = false)
+    private SeatingSection seatingSection;
+
     @Column(name = "seat_number", nullable = false, length = 10)
     private String seatNumber;
 

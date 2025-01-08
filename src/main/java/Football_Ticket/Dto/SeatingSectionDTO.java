@@ -21,5 +21,4 @@ public class SeatingSectionDTO {
     private String createdBy;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    // Getters and Setters
 }

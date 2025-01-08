@@ -12,12 +12,28 @@ import java.time.LocalDateTime;
 @Data
 public class TicketDTO {
 
+//    private String id;
+//    private String matchId;
+//    private String seatNumber;
+//    private BigDecimal price;
+//    private boolean isPaid;
+//    private LocalDateTime purchaseDate;
+//    private String qrCode;
+//    private String status;
+//
+//    private String createdBy;
+//    private LocalDateTime createdAt;
+//    private LocalDateTime updatedAt;
+
     private String id;
     private String matchId;
+    private String seatingSectionId;
     private String seatNumber;
     private BigDecimal price;
     private boolean isPaid;
     private LocalDateTime purchaseDate;
     private String qrCode;
     private String status;
+    private String createdBy;
+    private LocalDateTime createdAt;
 }

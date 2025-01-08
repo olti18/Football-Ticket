@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import Football_Ticket.Dto.CreateTicketDTO;
 
 import java.util.List;
 
@@ -17,33 +18,88 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
+    // Create Ticket
+    @PostMapping
+    public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
+        TicketDTO ticket = ticketService.createTicket(dto);
+        return ResponseEntity.ok(ticket);
+    }
+
+    // Get all tickets
     @GetMapping
     public ResponseEntity<List<TicketDTO>> getAllTickets() {
         return ResponseEntity.ok(ticketService.getAllTickets());
     }
 
+    // Get ticket by ID
     @GetMapping("/{id}")
     public ResponseEntity<TicketDTO> getTicketById(@PathVariable String id) {
         return ResponseEntity.ok(ticketService.getTicketById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.createTicket(dto));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<TicketDTO> updateTicket(
-            @PathVariable String id,
-            @RequestBody TicketDTO dto) {
-        return ResponseEntity.ok(ticketService.updateTicket(id, dto));
-    }
-
+    // Delete ticket by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
         ticketService.deleteTicket(id);
         return ResponseEntity.noContent().build();
     }
+
+//    @Autowired
+//    private TicketService ticketService;
+//
+//    @PostMapping
+//    public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
+//        return ResponseEntity.ok(ticketService.createTicket(dto)); // Replace with Keycloak user ID
+//    }
+//
+//    @GetMapping
+//    public ResponseEntity<List<TicketDTO>> getAllTickets() {
+//        return ResponseEntity.ok(ticketService.getAllTickets());
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<TicketDTO> getTicketById(@PathVariable String id) {
+//        return ResponseEntity.ok(ticketService.getTicketById(id));
+//    }
+
+
+
+
+
+
+
+
+
+//    @Autowired
+//    private TicketService ticketService;
+//
+//    @GetMapping
+//    public ResponseEntity<List<TicketDTO>> getAllTickets() {
+//        return ResponseEntity.ok(ticketService.getAllTickets());
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<TicketDTO> getTicketById(@PathVariable String id) {
+//        return ResponseEntity.ok(ticketService.getTicketById(id));
+//    }
+//
+//    @PostMapping
+//    public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketDTO dto) {
+//        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.createTicket(dto));
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<TicketDTO> updateTicket(
+//            @PathVariable String id,
+//            @RequestBody TicketDTO dto) {
+//        return ResponseEntity.ok(ticketService.updateTicket(id, dto));
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
+//        ticketService.deleteTicket(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
 
 
