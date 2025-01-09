@@ -35,49 +35,6 @@ public class SeatingSectionController {
 
 
 
-
-
-
-//    @Autowired
-//    private SeatingSectionService seatingSectionService;
-//
-//
-//    @GetMapping
-//    public ResponseEntity<List<SeatingSectionDTO>> getAllSeatingSections() {
-//        List<SeatingSectionDTO> sections = seatingSectionService.getAllSeatingSections();
-//        return ResponseEntity.ok(sections);
-//    }
-//
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<SeatingSectionDTO> getSeatingSectionById(@PathVariable String id) {
-//        SeatingSectionDTO section = seatingSectionService.getSeatingSectionById(id);
-//        return ResponseEntity.ok(section);
-//    }
-//
-//
-//    @PostMapping
-//    public ResponseEntity<SeatingSectionDTO> createSeatingSection(@RequestBody SeatingSectionDTO dto) {
-//        SeatingSectionDTO createdSection = seatingSectionService.createSeatingSection(dto);
-//        return ResponseEntity.ok(createdSection);
-//    }
-//
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<SeatingSectionDTO> updateSeatingSection(@PathVariable String id, @RequestBody SeatingSectionDTO dto) {
-//        SeatingSectionDTO updatedSection = seatingSectionService.updateSeatingSection(id, dto);
-//        return ResponseEntity.ok(updatedSection);
-//    }
-//
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteSeatingSection(@PathVariable String id) {
-//        seatingSectionService.deleteSeatingSection(id);
-//        return ResponseEntity.noContent().build();
-//    }
-
-
-
 }
 //{
 //        "stadiumId": "stadium id",

@@ -30,8 +30,7 @@
         private TicketRepository ticketRepository;
 
         public PaymentIntent createPayment(String ticketId) throws StripeException {
-            // Set Stripe API Key
-           //Stripe.apiKey = "sk_test_51QdfqtLat6bLARBD25uUKyBFYhOIQU7arw0qCs9KpTSnrGX64OdtwUnq4G2VSbQUOe1A0Lh6H1eKNYHIsw9vmLn900XVP9zZ5j";
+
             Stripe.apiKey = "sk_test_51QdfqtLat6bLARBD25uUKyBFYhOIQU7arw0qCs9KpTSnrGX64OdtwUnq4G2VSbQUOe1A0Lh6H1eKNYHIsw9vmLn900XVP9zZ5j"; // Replace with your actual API key
 
             // Validate Ticket

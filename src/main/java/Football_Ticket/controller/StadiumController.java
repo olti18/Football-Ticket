@@ -70,11 +70,7 @@ public class StadiumController {
         return ResponseEntity.noContent().build();
     }
 
-    // **Helper Method: Get Keycloak User ID**
-//    private String getCurrentUserId() {
-//        Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        return jwt.getClaim("sub"); // 'sub' contains the user ID from Keycloak
-//    }
+
     private String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof Jwt) {
