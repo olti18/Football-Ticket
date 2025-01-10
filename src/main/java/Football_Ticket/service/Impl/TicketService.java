@@ -73,6 +73,10 @@ public class TicketService {
     }
 
 
+    public List<Ticket> getTicketsByUserId(String userId) {
+        // Use the repository to fetch tickets by userId
+        return ticketRepository.findByUserId(userId);
+    }
 
     private String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -1,12 +1,14 @@
 package Football_Ticket.controller;
 
-import Football_Ticket.Dto.PaymentRequestDTO;
+
 import Football_Ticket.service.Impl.PaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/payments")
@@ -24,4 +26,7 @@ public class PaymentController {
             return ResponseEntity.badRequest().body("Payment Failed: " + e.getMessage());
         }
     }
+
+
+
 }

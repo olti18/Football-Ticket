@@ -2,10 +2,14 @@ package Football_Ticket.controller;
 
 
 import Football_Ticket.Dto.TicketDTO;
+import Football_Ticket.model.Ticket;
 import Football_Ticket.service.Impl.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import Football_Ticket.Dto.CreateTicketDTO;
 
@@ -44,6 +48,25 @@ public class TicketController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/tickets/my")
+    public ResponseEntity<List<Ticket>> getMyTickets() {
+        String userId = getCurrentUserId();
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // No valid user ID found
+        }
+        List<Ticket> tickets = ticketService.getTicketsByUserId(userId);
+        return ResponseEntity.ok(tickets);
+    }
+
+
+    private String getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof Jwt) {
+            Jwt jwt = (Jwt) authentication.getPrincipal(); // Cast the principal to a Jwt object
+            return jwt.getClaim("sub"); // Retrieve the "sub" claim, which typically contains the user ID
+        }
+        return null; // Return null if no authentication or if the principal is not a JWT
+    }
 
 }
 // Tickets
