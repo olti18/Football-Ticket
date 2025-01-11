@@ -4,6 +4,7 @@ package Football_Ticket.controller;
 import Football_Ticket.Dto.TicketDTO;
 import Football_Ticket.model.Ticket;
 import Football_Ticket.service.Impl.TicketService;
+import com.nimbusds.oauth2.sdk.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +23,46 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-    // Create Ticket
-    @PostMapping
-    public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
-        TicketDTO ticket = ticketService.createTicket(dto);
-        return ResponseEntity.ok(ticket);
-    }
 
+//    @PostMapping("/create")
+//    public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
+//        if (dto.getSeatNumber() == null || dto.getSeatNumber().isEmpty()) {
+//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//        }
+//
+//        try {
+//            TicketDTO ticketDTO = ticketService.createTicket(dto);
+//            return new ResponseEntity<>(ticketDTO, HttpStatus.OK);
+//        } catch (RuntimeException e) {
+//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+
+
+
+
+
+    // Create Ticket
+//    @PostMapping
+//    public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
+//        TicketDTO ticket = ticketService.createTicket(dto);
+//        return ResponseEntity.ok(ticket);
+//    }
+    @PostMapping("/create")
+    public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
+        try {
+            TicketDTO ticketDTO = ticketService.CreateTicket(dto);
+            return new ResponseEntity<>(ticketDTO, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+   }
+//    @PostMapping
+//    public ResponseEntity<TicketDTO> CreateTicket(@RequestBody CreateTicketDTO dto){
+//        TicketDTO ticketDTO = ticketService.CreateTicket(dto);
+//        return  ResponseEntity.ok(ticketDTO);
+//    }
     // Get all tickets
     @GetMapping
     public ResponseEntity<List<TicketDTO>> getAllTickets() {
@@ -48,15 +82,15 @@ public class TicketController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/tickets/my")
-    public ResponseEntity<List<Ticket>> getMyTickets() {
-        String userId = getCurrentUserId();
-        if (userId == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // No valid user ID found
-        }
-        List<Ticket> tickets = ticketService.getTicketsByUserId(userId);
-        return ResponseEntity.ok(tickets);
-    }
+//    @GetMapping("/tickets/my")
+//    public ResponseEntity<List<Ticket>> getMyTickets() {
+//        String userId = getCurrentUserId();
+//        if (userId == null) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // No valid user ID found
+//        }
+//        List<Ticket> tickets = ticketService.getTicketsByUserId(userId);
+//        return ResponseEntity.ok(tickets);
+//    }
 
 
     private String getCurrentUserId() {

@@ -33,22 +33,44 @@ public class TicketService {
     @Autowired
     private TicketMapper ticketMapper;
 
-
-
-    // Create Ticket
-    public TicketDTO createTicket(CreateTicketDTO dto) {
-        String userId = getCurrentUserId(); // Automatically fetch logged-in user ID
+    public TicketDTO CreateTicket(CreateTicketDTO dto){
+        String userId = getCurrentUserId();
 
         Match match = matchRepository.findById(dto.getMatchId())
                 .orElseThrow(() -> new RuntimeException("Match not found"));
-
         SeatingSection seatingSection = seatingSectionRepository.findById(dto.getSeatingSectionId())
-                .orElseThrow(() -> new RuntimeException("Seating Section not found"));
+                .orElseThrow(() -> new RuntimeException("Seating section not found"));
 
         Ticket ticket = ticketMapper.toEntity(dto, match, seatingSection, userId);
+        ticket.setPrice(match.getTicketPrice().multiply(seatingSection.getPriceMultiplier()));
+
+        // Ensure the seat number is set from the DTO
+        if (dto.getSeatNumber() != null && !dto.getSeatNumber().isEmpty()) {
+            ticket.setSeatNumber(dto.getSeatNumber());
+        } else {
+            throw new IllegalArgumentException("Seat number is required.");
+        }
+        ticket.setStatus("PENDING");
         ticketRepository.save(ticket);
+
         return ticketMapper.toDTO(ticket);
+
     }
+
+//    // Create Ticket
+//    public TicketDTO createTicket(CreateTicketDTO dto) {
+//        String userId = getCurrentUserId(); // Automatically fetch logged-in user ID
+//
+//        Match match = matchRepository.findById(dto.getMatchId())
+//                .orElseThrow(() -> new RuntimeException("Match not found"));
+//
+//        SeatingSection seatingSection = seatingSectionRepository.findById(dto.getSeatingSectionId())
+//                .orElseThrow(() -> new RuntimeException("Seating Section not found"));
+//
+//        Ticket ticket = ticketMapper.toEntity(dto, match, seatingSection, userId);
+//        ticketRepository.save(ticket);
+//        return ticketMapper.toDTO(ticket);
+//    }
 
     // Get all tickets
     public List<TicketDTO> getAllTickets() {
@@ -73,10 +95,10 @@ public class TicketService {
     }
 
 
-    public List<Ticket> getTicketsByUserId(String userId) {
-        // Use the repository to fetch tickets by userId
-        return ticketRepository.findByUserId(userId);
-    }
+//    public List<Ticket> getTicketsByUserId(String userId) {
+//        // Use the repository to fetch tickets by userId
+//        return ticketRepository.findByUserId(userId);
+//    }
 
     private String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

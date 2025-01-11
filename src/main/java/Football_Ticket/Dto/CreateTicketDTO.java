@@ -14,7 +14,8 @@ public class CreateTicketDTO {
     private String matchId;
     private String seatingSectionId;
     private String seatNumber;
-    private BigDecimal price;
-    private String status;
+//    private String seatNumber;
+//    private BigDecimal price;
+//    private String status;
 
 }
