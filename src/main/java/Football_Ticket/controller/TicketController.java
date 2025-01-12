@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import Football_Ticket.Dto.CreateTicketDTO;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -23,32 +24,12 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-
-//    @PostMapping("/create")
-//    public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
-//        if (dto.getSeatNumber() == null || dto.getSeatNumber().isEmpty()) {
-//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//        }
-//
-//        try {
-//            TicketDTO ticketDTO = ticketService.createTicket(dto);
-//            return new ResponseEntity<>(ticketDTO, HttpStatus.OK);
-//        } catch (RuntimeException e) {
-//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//        }
+//    @GetMapping("/my-tickets")
+//    public ResponseEntity<List<Ticket>> getMyTickets() {
+//        List<Ticket> tickets = ticketService.getTicketsByCurrentUser();
+//        return ResponseEntity.ok(tickets);
 //    }
 
-
-
-
-
-
-    // Create Ticket
-//    @PostMapping
-//    public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
-//        TicketDTO ticket = ticketService.createTicket(dto);
-//        return ResponseEntity.ok(ticket);
-//    }
     @PostMapping("/create")
     public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
         try {
@@ -58,11 +39,7 @@ public class TicketController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
    }
-//    @PostMapping
-//    public ResponseEntity<TicketDTO> CreateTicket(@RequestBody CreateTicketDTO dto){
-//        TicketDTO ticketDTO = ticketService.CreateTicket(dto);
-//        return  ResponseEntity.ok(ticketDTO);
-//    }
+
     // Get all tickets
     @GetMapping
     public ResponseEntity<List<TicketDTO>> getAllTickets() {
@@ -120,7 +97,7 @@ public class TicketController {
 
 
 //{
-//        "id": 1,// remve this pls
+//        "id": 1,// remove this pls
 //        "name": "Test Event",
 //        "dateTime": "2024-12-20T09:43:16",
 //        "stadium": "Test Stadium",

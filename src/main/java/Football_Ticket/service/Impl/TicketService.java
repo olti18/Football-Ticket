@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +33,10 @@ public class TicketService {
 
     @Autowired
     private TicketMapper ticketMapper;
+
+
+
+
 
     public TicketDTO CreateTicket(CreateTicketDTO dto){
         String userId = getCurrentUserId();
@@ -57,20 +62,6 @@ public class TicketService {
 
     }
 
-//    // Create Ticket
-//    public TicketDTO createTicket(CreateTicketDTO dto) {
-//        String userId = getCurrentUserId(); // Automatically fetch logged-in user ID
-//
-//        Match match = matchRepository.findById(dto.getMatchId())
-//                .orElseThrow(() -> new RuntimeException("Match not found"));
-//
-//        SeatingSection seatingSection = seatingSectionRepository.findById(dto.getSeatingSectionId())
-//                .orElseThrow(() -> new RuntimeException("Seating Section not found"));
-//
-//        Ticket ticket = ticketMapper.toEntity(dto, match, seatingSection, userId);
-//        ticketRepository.save(ticket);
-//        return ticketMapper.toDTO(ticket);
-//    }
 
     // Get all tickets
     public List<TicketDTO> getAllTickets() {
@@ -93,11 +84,17 @@ public class TicketService {
         }
         ticketRepository.deleteById(id);
     }
+    @Autowired
+    public TicketService(TicketRepository ticketRepository) {
+        this.ticketRepository = ticketRepository;
+    }
 
-
-//    public List<Ticket> getTicketsByUserId(String userId) {
-//        // Use the repository to fetch tickets by userId
-//        return ticketRepository.findByUserId(userId);
+//    public List<Ticket> getTicketsByCurrentUser() {
+//        String userId = getCurrentUserId(); // Get the logged-in user's ID from Keycloak
+//        if (userId != null) {
+//            return ticketRepository.findByCreatedBy(userId);
+//        }
+//        throw new RuntimeException("User ID not found in security context");
 //    }
 
     private String getCurrentUserId() {
