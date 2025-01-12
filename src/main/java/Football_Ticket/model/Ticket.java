@@ -43,6 +43,10 @@ public class Ticket {
     @Column(nullable = false, length = 20)
     private String status;
 
+    @Column(name = "bought_by", nullable = true)
+    private String boughtBy; // Keycloak User ID of the buyer
+
+
     @Column(name = "created_by", nullable = false)
     private String createdBy; // Keycloak User ID
 

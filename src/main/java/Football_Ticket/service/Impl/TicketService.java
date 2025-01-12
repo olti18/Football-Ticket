@@ -35,7 +35,13 @@ public class TicketService {
     private TicketMapper ticketMapper;
 
 
-
+    public List<Ticket> getTicketsForLoggedInUser() {
+        String userId = getCurrentUserId();
+        if (userId == null) {
+            throw new RuntimeException("User not authenticated");
+        }
+        return ticketRepository.findByBoughtByAndIsPaid(userId, true);
+    }
 
 
     public TicketDTO CreateTicket(CreateTicketDTO dto){

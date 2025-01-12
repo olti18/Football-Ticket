@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, String> {
-   // List<Ticket> findByCreatedBy(String createdBy);
+    List<Ticket> findByBoughtByAndIsPaid(String boughtBy, boolean isPaid);
+
 }

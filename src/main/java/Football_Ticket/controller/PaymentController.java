@@ -1,6 +1,7 @@
 package Football_Ticket.controller;
 
 
+import Football_Ticket.model.Ticket;
 import Football_Ticket.service.Impl.PaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -16,6 +17,12 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
+
+//    @GetMapping("/my-paid-tickets")
+//    public ResponseEntity<List<Ticket>> getMyPaidTickets() {
+//        List<Ticket> tickets = paymentService.getPaidTicketsByCurrentUser();
+//        return ResponseEntity.ok(tickets);
+//    }
 
     @PostMapping("/create/{ticketId}")
     public ResponseEntity<String> createPaymentIntent(@PathVariable String ticketId) {

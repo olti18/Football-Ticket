@@ -37,5 +37,5 @@ public class Payment {
     @CreationTimestamp
     private LocalDateTime paymentDate;
 
-    // Getters and Setters
+
 }

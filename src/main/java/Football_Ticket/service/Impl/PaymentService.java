@@ -17,6 +17,7 @@
     import java.math.BigDecimal;
     import java.time.Instant;
     import java.time.ZoneId;
+    import java.util.List;
 
 
     import com.stripe.Stripe;
@@ -29,6 +30,25 @@
         @Autowired
         private TicketRepository ticketRepository;
 
+        public List<Ticket> getPaidTicketsByCurrentUser() {
+            String userId = getCurrentUserId(); // Fetch the logged-in user's ID
+            if (userId != null) {
+                return ticketRepository.findByBoughtByAndIsPaid(userId, true);
+            }
+            throw new RuntimeException("User ID not found in security context");
+        }
+
+//        public List<Ticket> getPaidTicketsByCurrentUser() {
+//            String userId = getCurrentUserId(); // Fetch the logged-in user's ID
+//            if (userId != null) {
+//                // Fetch payments with "Success" status for the current user
+//                List<Payment> payments = paymentRepository.findByCreatedByAndPaymentStatus(userId, "Success");
+//                // Extract tickets from the payments
+//                return payments.stream().map(Payment::getTicket).toList();
+//            }
+//            throw new RuntimeException("User ID not found in security context");
+//        }
+
         public PaymentIntent createPayment(String ticketId) throws StripeException {
 
             Stripe.apiKey = "sk_test_51QdfqtLat6bLARBD25uUKyBFYhOIQU7arw0qCs9KpTSnrGX64OdtwUnq4G2VSbQUOe1A0Lh6H1eKNYHIsw9vmLn900XVP9zZ5j"; // Replace with your actual API key
@@ -39,6 +59,11 @@
 
             if (ticket.isPaid()) {
                 throw new RuntimeException("Ticket is already paid!");
+            }
+
+            String userId = getCurrentUserId();
+            if (userId == null) {
+                throw new RuntimeException("User not authenticated");
             }
 
             // Create PaymentIntent
@@ -73,6 +98,7 @@
             // Update Ticket status if payment successful
             if ("succeeded".equals(paymentIntent.getStatus())) {
                 ticket.setPaid(true);
+                ticket.setBoughtBy(userId);
                 ticketRepository.save(ticket);
             }
 

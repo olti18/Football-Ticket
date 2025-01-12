@@ -3,6 +3,7 @@ package Football_Ticket.controller;
 
 import Football_Ticket.Dto.TicketDTO;
 import Football_Ticket.model.Ticket;
+import Football_Ticket.service.Impl.PaymentService;
 import Football_Ticket.service.Impl.TicketService;
 import com.nimbusds.oauth2.sdk.Request;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,18 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-//    @GetMapping("/my-tickets")
-//    public ResponseEntity<List<Ticket>> getMyTickets() {
-//        List<Ticket> tickets = ticketService.getTicketsByCurrentUser();
-//        return ResponseEntity.ok(tickets);
-//    }
+    @Autowired
+    private PaymentService paymentService;
+
+    @GetMapping("/purchased")
+    public ResponseEntity<List<Ticket>> getPurchasedTickets() {
+        try {
+            List<Ticket> tickets = paymentService.getPaidTicketsByCurrentUser();
+            return ResponseEntity.ok(tickets);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.badRequest().body(null); // Handle errors gracefully
+        }
+    }
 
     @PostMapping("/create")
     public ResponseEntity<TicketDTO> createTicket(@RequestBody CreateTicketDTO dto) {
@@ -58,6 +66,7 @@ public class TicketController {
         ticketService.deleteTicket(id);
         return ResponseEntity.noContent().build();
     }
+    //
 
 //    @GetMapping("/tickets/my")
 //    public ResponseEntity<List<Ticket>> getMyTickets() {
