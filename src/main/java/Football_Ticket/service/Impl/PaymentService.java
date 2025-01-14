@@ -38,16 +38,7 @@
             throw new RuntimeException("User ID not found in security context");
         }
 
-//        public List<Ticket> getPaidTicketsByCurrentUser() {
-//            String userId = getCurrentUserId(); // Fetch the logged-in user's ID
-//            if (userId != null) {
-//                // Fetch payments with "Success" status for the current user
-//                List<Payment> payments = paymentRepository.findByCreatedByAndPaymentStatus(userId, "Success");
-//                // Extract tickets from the payments
-//                return payments.stream().map(Payment::getTicket).toList();
-//            }
-//            throw new RuntimeException("User ID not found in security context");
-//        }
+
 
         public PaymentIntent createPayment(String ticketId) throws StripeException {
 

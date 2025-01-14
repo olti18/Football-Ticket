@@ -95,14 +95,6 @@ public class TicketService {
         this.ticketRepository = ticketRepository;
     }
 
-//    public List<Ticket> getTicketsByCurrentUser() {
-//        String userId = getCurrentUserId(); // Get the logged-in user's ID from Keycloak
-//        if (userId != null) {
-//            return ticketRepository.findByCreatedBy(userId);
-//        }
-//        throw new RuntimeException("User ID not found in security context");
-//    }
-
     private String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof Jwt) {

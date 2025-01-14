@@ -18,11 +18,6 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-//    @GetMapping("/my-paid-tickets")
-//    public ResponseEntity<List<Ticket>> getMyPaidTickets() {
-//        List<Ticket> tickets = paymentService.getPaidTicketsByCurrentUser();
-//        return ResponseEntity.ok(tickets);
-//    }
 
     @PostMapping("/create/{ticketId}")
     public ResponseEntity<String> createPaymentIntent(@PathVariable String ticketId) {

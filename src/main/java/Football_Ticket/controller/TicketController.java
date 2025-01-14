@@ -66,17 +66,6 @@ public class TicketController {
         ticketService.deleteTicket(id);
         return ResponseEntity.noContent().build();
     }
-    //
-
-//    @GetMapping("/tickets/my")
-//    public ResponseEntity<List<Ticket>> getMyTickets() {
-//        String userId = getCurrentUserId();
-//        if (userId == null) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // No valid user ID found
-//        }
-//        List<Ticket> tickets = ticketService.getTicketsByUserId(userId);
-//        return ResponseEntity.ok(tickets);
-//    }
 
 
     private String getCurrentUserId() {
