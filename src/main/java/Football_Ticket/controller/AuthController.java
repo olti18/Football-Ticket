@@ -1,11 +1,13 @@
 package Football_Ticket.controller;
 
+import Football_Ticket.service.Impl.AuthServiceImpl;
 import jakarta.ws.rs.core.Response;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -27,128 +29,35 @@ import java.util.Map;
 public class AuthController {
 
 
-    @Value("${keycloak.auth-server-url}")
-    private String keycloakServerUrl;
+    @Autowired
+    private AuthServiceImpl authService;
 
-    @Value("${keycloak.realm}")
-    private String realm;
-
-    @Value("${keycloak.resource}")
-    private String clientId;
-
-    @Value("${keycloak.credentials.secret:}")
-    private String clientSecret;
-
-    @Value("${keycloak.admin.username:default-admin}")
-    private String adminUsername;
-
-    @Value("${keycloak.admin.password:default-password}")
-    private String adminPassword;
-
-
+    /**
+     * Endpoint for user registration.
+     * @param username the username of the user.
+     * @param password the password of the user.
+     * @param email the email of the user.
+     * @return a ResponseEntity indicating the result of the registration.
+     */
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestParam String username, @RequestParam String password, @RequestParam String email) {
-        try {
-            Keycloak keycloak = KeycloakBuilder.builder()
-                    .serverUrl(keycloakServerUrl)
-                    .realm("master")
-                    .grantType(OAuth2Constants.PASSWORD)
-                    .clientId("admin-cli")
-                    .username(adminUsername)
-                    .password(adminPassword)
-                    .build();
-
-            // Create user representation
-            UserRepresentation user = new UserRepresentation();
-            user.setUsername(username);
-            user.setEmail(email);
-            user.setEnabled(true);
-
-            // Set user credentials
-            CredentialRepresentation credential = new CredentialRepresentation();
-            credential.setType(CredentialRepresentation.PASSWORD);
-            credential.setValue(password);
-            credential.setTemporary(false);
-
-            user.setCredentials(Collections.singletonList(credential));
-
-            // Create the user in Keycloak
-            Response response = keycloak.realm(realm).users().create(user);
-
-            if (response.getStatus() == 201) {
-                return ResponseEntity.status(HttpStatus.CREATED).body(Collections.singletonMap("message", "User registered successfully"));
-            } else {
-                return ResponseEntity.status(response.getStatus()).body(Collections.singletonMap("error", response.getStatusInfo().toString()));
-            }
-        } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", "An unexpected error occurred: " + ex.getMessage()));
-        }
+    public ResponseEntity<?> registerUser(
+            @RequestParam String username,
+            @RequestParam String password,
+            @RequestParam String email) {
+        return authService.register(username, password, email);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//    @Value("${keycloak.auth-server-url}")
-//    private String keycloakServerUrl;
-//
-//    @Value("${keycloak.realm}")
-//    private String realm;
-//
-//    @Value("${keycloak.resource}")
-//    private String clientId;
-//
-//    @Value("${keycloak.credentials.secret:}")
-//    private String clientSecret;
-
+    /**
+     * Endpoint for user login.
+     * @param username the username of the user.
+     * @param password the password of the user.
+     * @return a ResponseEntity containing the login result (access token).
+     */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
-        //String tokenEndpoint = keycloakServerUrl + "/realms/" + realm + "/protocol/openid-connect/token";
-        String tokenEndpoint = "http://localhost:8180/realms/backend/protocol/openid-connect/token";
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-        String body = String.format(
-                "grant_type=password&client_id=%s&username=%s&password=%s",
-                clientId, username, password
-        );
-
-        if (!clientSecret.isEmpty()) {
-            body += "&client_secret=" + clientSecret;
-        }
-
-        HttpEntity<String> entity = new HttpEntity<>(body, headers);
-
-        try {
-            ResponseEntity<Map> response = restTemplate.exchange(tokenEndpoint, HttpMethod.POST, entity, Map.class);
-            return ResponseEntity.ok(response.getBody());
-        } catch (HttpClientErrorException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid credentials"));
-        } catch (ResourceAccessException e) {
-            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(Map.of("error", "Keycloak service unavailable"));
-        } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "An unexpected error occurred"));
-        }
-
-
-
-
-
+    public ResponseEntity<?> loginUser(
+            @RequestParam String username,
+            @RequestParam String password) {
+        return authService.login(username, password);
     }
+
 }

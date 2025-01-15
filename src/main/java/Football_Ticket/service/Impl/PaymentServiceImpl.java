@@ -1,10 +1,10 @@
     package Football_Ticket.service.Impl;
 
-    import Football_Ticket.Dto.PaymentRequestDTO;
     import Football_Ticket.model.Payment;
     import Football_Ticket.model.Ticket;
     import Football_Ticket.repository.PaymentRepository;
     import Football_Ticket.repository.TicketRepository;
+    import Football_Ticket.service.PaymentService;
     import com.stripe.exception.StripeException;
     import com.stripe.model.PaymentIntent;
     import com.stripe.param.PaymentIntentCreateParams;
@@ -23,7 +23,7 @@
     import com.stripe.Stripe;
 
     @Service
-    public class PaymentService {
+    public class PaymentServiceImpl implements PaymentService {
         @Autowired
         private PaymentRepository paymentRepository;
 

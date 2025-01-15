@@ -46,29 +46,29 @@ public class StadiumController {
         return ResponseEntity.ok(stadiums);
     }
 
-    // **Get Stadium By ID**
-    @GetMapping("/{id}")
-    public ResponseEntity<StadiumDTO> getStadiumById(@PathVariable String id) {
-        StadiumDTO stadium = stadiumService.getStadiumById(id);
-        return ResponseEntity.ok(stadium);
-    }
-
-    // ️ **Update Stadium**
-    @PutMapping("/{id}")
-    public ResponseEntity<StadiumDTO> updateStadium(
-            @PathVariable String id,
-            @RequestBody StadiumDTO stadiumDTO
-    ) {
-        StadiumDTO updatedStadium = stadiumService.updateStadium(id, stadiumDTO);
-        return ResponseEntity.ok(updatedStadium);
-    }
-
-    //  **Delete Stadium**
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStadium(@PathVariable String id) {
-        stadiumService.deleteStadium(id);
-        return ResponseEntity.noContent().build();
-    }
+//    // **Get Stadium By ID**
+//    @GetMapping("/{id}")
+//    public ResponseEntity<StadiumDTO> getStadiumById(@PathVariable String id) {
+//        StadiumDTO stadium = stadiumService.getStadiumById(id);
+//        return ResponseEntity.ok(stadium);
+//    }
+//
+//    // ️ **Update Stadium**
+//    @PutMapping("/{id}")
+//    public ResponseEntity<StadiumDTO> updateStadium(
+//            @PathVariable String id,
+//            @RequestBody StadiumDTO stadiumDTO
+//    ) {
+//        StadiumDTO updatedStadium = stadiumService.updateStadium(id, stadiumDTO);
+//        return ResponseEntity.ok(updatedStadium);
+//    }
+//
+//    //  **Delete Stadium**
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteStadium(@PathVariable String id) {
+//        stadiumService.deleteStadium(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
 
     private String getCurrentUserId() {

@@ -2,15 +2,10 @@ package Football_Ticket.controller;
 
 import Football_Ticket.Dto.CreateSeatingSectionDTO;
 import Football_Ticket.Dto.SeatingSectionDTO;
-import Football_Ticket.service.Impl.SeatingSectionService;
+import Football_Ticket.service.Impl.SeatingSectionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -21,7 +16,7 @@ public class SeatingSectionController {
 
 
     @Autowired
-    private SeatingSectionService seatingSectionService;
+    private SeatingSectionServiceImpl seatingSectionService;
 
     @PostMapping
     public ResponseEntity<SeatingSectionDTO> createSection(@RequestBody CreateSeatingSectionDTO dto) {

@@ -7,6 +7,8 @@ import Football_Ticket.model.SeatingSection;
 import Football_Ticket.model.Stadium;
 import Football_Ticket.repository.SeatingSectionRepository;
 import Football_Ticket.repository.StadiumRepository;
+import Football_Ticket.service.MatchService;
+import Football_Ticket.service.SeatingSectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SeatingSectionService {
+public class SeatingSectionServiceImpl implements SeatingSectionService {
 
 
     @Autowired

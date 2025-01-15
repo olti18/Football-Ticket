@@ -9,18 +9,18 @@ import Football_Ticket.model.Ticket;
 import Football_Ticket.repository.MatchRepository;
 import Football_Ticket.repository.SeatingSectionRepository;
 import Football_Ticket.repository.TicketRepository;
+import Football_Ticket.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TicketService {
+public class TicketServiceImpl implements TicketService {
 
     @Autowired
     private TicketRepository ticketRepository;
@@ -91,7 +91,7 @@ public class TicketService {
         ticketRepository.deleteById(id);
     }
     @Autowired
-    public TicketService(TicketRepository ticketRepository) {
+    public TicketServiceImpl(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
     }
 

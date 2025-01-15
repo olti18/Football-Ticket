@@ -3,9 +3,8 @@ package Football_Ticket.controller;
 
 import Football_Ticket.Dto.TicketDTO;
 import Football_Ticket.model.Ticket;
-import Football_Ticket.service.Impl.PaymentService;
-import Football_Ticket.service.Impl.TicketService;
-import com.nimbusds.oauth2.sdk.Request;
+import Football_Ticket.service.Impl.PaymentServiceImpl;
+import Football_Ticket.service.Impl.TicketServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,6 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import Football_Ticket.Dto.CreateTicketDTO;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -23,10 +21,10 @@ import java.util.List;
 public class TicketController {
 
     @Autowired
-    private TicketService ticketService;
+    private TicketServiceImpl ticketService;
 
     @Autowired
-    private PaymentService paymentService;
+    private PaymentServiceImpl paymentService;
 
     @GetMapping("/purchased")
     public ResponseEntity<List<Ticket>> getPurchasedTickets() {
@@ -54,18 +52,20 @@ public class TicketController {
         return ResponseEntity.ok(ticketService.getAllTickets());
     }
 
-    // Get ticket by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<TicketDTO> getTicketById(@PathVariable String id) {
-        return ResponseEntity.ok(ticketService.getTicketById(id));
-    }
+//    // Get ticket by ID
+//    @GetMapping("/{id}")
+//    public ResponseEntity<TicketDTO> getTicketById(@PathVariable String id) {
+//        return ResponseEntity.ok(ticketService.getTicketById(id));
+//    }
 
-    // Delete ticket by ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
-        ticketService.deleteTicket(id);
-        return ResponseEntity.noContent().build();
-    }
+
+//
+//    // Delete ticket by ID
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
+//        ticketService.deleteTicket(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
 
     private String getCurrentUserId() {

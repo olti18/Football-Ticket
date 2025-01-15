@@ -20,25 +20,25 @@ public class MatchController {
     public ResponseEntity<List<MatchDTO>> getAllMatches() {
         return ResponseEntity.ok(matchServiceImpl.getAllMatches());
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<MatchDTO> getMatchById(@PathVariable String id) {
-        return ResponseEntity.ok(matchServiceImpl.getMatchById(id));
-    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<MatchDTO> getMatchById(@PathVariable String id) {
+//        return ResponseEntity.ok(matchServiceImpl.getMatchById(id));
+//    }
 
     @PostMapping
     public ResponseEntity<MatchDTO> createMatch(@RequestBody MatchDTO matchDTO) {
         return ResponseEntity.ok(matchServiceImpl.createMatch(matchDTO));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<MatchDTO> updateMatch(@PathVariable String id, @RequestBody MatchDTO matchDTO) {
-        return ResponseEntity.ok(matchServiceImpl.updateMatch(id, matchDTO));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMatch(@PathVariable String id) {
-        matchServiceImpl.deleteMatch(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<MatchDTO> updateMatch(@PathVariable String id, @RequestBody MatchDTO matchDTO) {
+//        return ResponseEntity.ok(matchServiceImpl.updateMatch(id, matchDTO));
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteMatch(@PathVariable String id) {
+//        matchServiceImpl.deleteMatch(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }
