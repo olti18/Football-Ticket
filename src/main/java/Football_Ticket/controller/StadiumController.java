@@ -1,5 +1,6 @@
 package Football_Ticket.controller;
 
+import Football_Ticket.Dto.CreateStadiumDTO;
 import Football_Ticket.Dto.StadiumCreateDTO;
 import Football_Ticket.Dto.StadiumDTO;
 import Football_Ticket.service.StadiumService;
@@ -22,21 +23,36 @@ public class StadiumController {
         this.stadiumService = stadiumService;
     }
 
-    // **Create Stadium**
-    @PostMapping
-    public ResponseEntity<StadiumDTO> createStadium(@RequestBody StadiumDTO stadiumDTO) {
 
+    @PostMapping
+    public ResponseEntity<StadiumDTO> createStadium(@RequestBody CreateStadiumDTO createStadiumDTO) {
         try {
             String createdBy = getCurrentUserId(); // Get Keycloak user ID
-            StadiumDTO createdStadium = stadiumService.createStadium(stadiumDTO, createdBy);
+            StadiumDTO createdStadium = stadiumService.createStadium(createStadiumDTO, createdBy);
             return new ResponseEntity<>(createdStadium, HttpStatus.CREATED);
-            // logic to handle stadium creation
-//            return ResponseEntity.ok(Stadium);
-        }  catch (Exception ex) {
+        } catch (Exception ex) {
             // Log the general exception
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
+
+//    // **Create Stadium**
+//    @PostMapping
+//    public ResponseEntity<StadiumDTO> createStadium(@RequestBody StadiumDTO stadiumDTO) {
+//
+//        try {
+//            String createdBy = getCurrentUserId(); // Get Keycloak user ID
+//            StadiumDTO createdStadium = stadiumService.createStadium(stadiumDTO, createdBy);
+//            return new ResponseEntity<>(createdStadium, HttpStatus.CREATED);
+//            // logic to handle stadium creation
+////            return ResponseEntity.ok(Stadium);
+//        }  catch (Exception ex) {
+//            // Log the general exception
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//        }
+//    }
 
 
     // **Get All Stadiums**

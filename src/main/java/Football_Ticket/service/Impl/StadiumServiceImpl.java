@@ -1,6 +1,7 @@
 package Football_Ticket.service.Impl;
 
 
+import Football_Ticket.Dto.CreateStadiumDTO;
 import Football_Ticket.Dto.StadiumDTO;
 import Football_Ticket.mapper.StadiumMapper;
 import Football_Ticket.model.Stadium;
@@ -27,10 +28,16 @@ public class StadiumServiceImpl implements StadiumService {
         this.stadiumMapper = stadiumMapper;
     }
 
+//    @Override
+//    public StadiumDTO createStadium(StadiumDTO stadiumDTO, String createdBy) {
+//        Stadium stadium = stadiumMapper.toEntity(stadiumDTO, createdBy);
+//        stadium.setCreatedBy(createdBy); // Set created by from Keycloak
+//        stadium = stadiumRepository.save(stadium);
+//        return stadiumMapper.toDTO(stadium);
+//    }
     @Override
-    public StadiumDTO createStadium(StadiumDTO stadiumDTO, String createdBy) {
-        Stadium stadium = stadiumMapper.toEntity(stadiumDTO);
-        stadium.setCreatedBy(createdBy); // Set created by from Keycloak
+    public StadiumDTO createStadium(CreateStadiumDTO createStadiumDTO, String createdBy) {
+        Stadium stadium = stadiumMapper.toEntity(createStadiumDTO, createdBy);
         stadium = stadiumRepository.save(stadium);
         return stadiumMapper.toDTO(stadium);
     }

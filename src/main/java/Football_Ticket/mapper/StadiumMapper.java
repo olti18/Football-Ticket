@@ -1,62 +1,35 @@
-//package Football_Ticket.mapper;
-//
-//
-//import Football_Ticket.Dto.StadiumDTO;
-//import Football_Ticket.model.Stadium;
-//import org.mapstruct.Mapper;
-//
-//import org.mapstruct.Mapping;
-//import org.mapstruct.factory.Mappers;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.stereotype.Component;
-//
-//
-////@Component
-//@Mapper(componentModel = "spring")
-//@Component
-//public interface StadiumMapper {
-//
-//    @Mapping(source = "id", target = "id")
-//    @Mapping(source = "name", target = "name")
-//    @Mapping(source = "location", target = "location")
-//    @Mapping(source = "capacity", target = "capacity")
-//    @Mapping(source = "createdBy", target = "createdBy")
-//    @Mapping(source = "createdAt", target = "createdAt")
-//    @Mapping(source = "updatedAt", target = "updatedAt")
-//    StadiumDTO toDTO(Stadium stadium);
-//
-//    @Mapping(source = "id", target = "id")
-//    @Mapping(source = "name", target = "name")
-//    @Mapping(source = "location", target = "location")
-//    @Mapping(source = "capacity", target = "capacity")
-//    @Mapping(source = "createdBy", target = "createdBy")
-//    @Mapping(source = "createdAt", target = "createdAt")
-//    @Mapping(source = "updatedAt", target = "updatedAt")
-//    Stadium toEntity(StadiumDTO stadiumDTO);
-//}
+
 package Football_Ticket.mapper;
 
-import Football_Ticket.Dto.StadiumCreateDTO;
+import Football_Ticket.Dto.CreateStadiumDTO;
 import Football_Ticket.Dto.StadiumDTO;
 import Football_Ticket.model.Stadium;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
-public interface StadiumMapper {
+import org.springframework.stereotype.Component;
+
+@Component
+public class StadiumMapper {
+
+    public Stadium toEntity(CreateStadiumDTO dto, String createdBy) {
+        Stadium stadium = new Stadium();
+        stadium.setName(dto.getName());
+        stadium.setLocation(dto.getLocation());
+        stadium.setCapacity(dto.getCapacity());
+        stadium.setCreatedBy(createdBy);
+        return stadium;
+    }
 
 
-    @Mapping(source = "location", target = "location")
-    StadiumDTO toDTO(Stadium stadium);
 
-    @Mapping(source = "location", target = "location")
-    Stadium toEntity(StadiumDTO stadiumDTO);
-
-    @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
-    @Mapping(target = "updatedAt", expression = "java(java.time.LocalDateTime.now())")
-    Stadium toEntity(StadiumCreateDTO stadiumCreateDTO);
-//    StadiumDTO toDTO(Stadium stadium);
-//
-//    // Map StadiumDTO to Stadium
-//    Stadium toEntity(StadiumDTO stadiumDTO);
+    public StadiumDTO toDTO(Stadium stadium) {
+        StadiumDTO dto = new StadiumDTO();
+        dto.setId(stadium.getId());
+        dto.setName(stadium.getName());
+        dto.setLocation(stadium.getLocation());
+        dto.setCapacity(stadium.getCapacity());
+        dto.setCreatedBy(stadium.getCreatedBy());
+        dto.setCreatedAt(stadium.getCreatedAt());
+        dto.setUpdatedAt(stadium.getUpdatedAt());
+        return dto;
+    }
 }
