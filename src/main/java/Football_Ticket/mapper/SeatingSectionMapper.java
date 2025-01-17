@@ -14,9 +14,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SeatingSectionMapper {
 
-
-
-
     public SeatingSection toEntity(CreateSeatingSectionDTO dto, Stadium stadium) {
         SeatingSection section = new SeatingSection();
         section.setStadium(stadium);
@@ -41,35 +38,6 @@ public class SeatingSectionMapper {
     }
 
 
-
-
-
-
-
-//    // Map Entity → DTO
-//    public SeatingSectionDTO toDTO(SeatingSection section) {
-//        return SeatingSectionDTO.builder()
-//                .id(section.getId())
-//                .stadiumId(section.getStadium().getId()) // Map Stadium ID
-//                .sectionName(section.getSectionName())
-//                .capacity(section.getCapacity())
-//                .priceMultiplier(section.getPriceMultiplier())
-//                .createdBy(section.getCreatedBy())
-//                .createdAt(section.getCreatedAt())
-//                .updatedAt(section.getUpdatedAt())
-//                .build();
-//    }
-//
-//    // Map DTO → Entity
-//    public SeatingSection mapToEntity(SeatingSectionDTO dto, Stadium stadium) {
-//        SeatingSection section = new SeatingSection();
-//        section.setStadium(stadium);
-//        section.setSectionName(dto.getSectionName());
-//        section.setCapacity(dto.getCapacity());
-//        section.setPriceMultiplier(dto.getPriceMultiplier());
-//        section.setCreatedBy(dto.getCreatedBy());
-//        return section;
-//    }
 
 }
 
