@@ -6,9 +6,9 @@ import com.stripe.model.PaymentIntent;
 
 import java.util.List;
 
-public interface PaymentService{
+public interface PaymentService {
 
     List<Ticket> getPaidTicketsByCurrentUser();
-    PaymentIntent createPayment(String ticketId) throws StripeException;
+    PaymentIntent createPayment(String ticketId,String discountCode) throws StripeException;
 
 }

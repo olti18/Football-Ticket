@@ -32,13 +32,7 @@ public class AuthController {
     @Autowired
     private AuthServiceImpl authService;
 
-    /**
-     * Endpoint for user registration.
-     * @param username the username of the user.
-     * @param password the password of the user.
-     * @param email the email of the user.
-     * @return a ResponseEntity indicating the result of the registration.
-     */
+
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(
             @RequestParam String username,
@@ -47,12 +41,7 @@ public class AuthController {
         return authService.register(username, password, email);
     }
 
-    /**
-     * Endpoint for user login.
-     * @param username the username of the user.
-     * @param password the password of the user.
-     * @return a ResponseEntity containing the login result (access token).
-     */
+
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(
             @RequestParam String username,
