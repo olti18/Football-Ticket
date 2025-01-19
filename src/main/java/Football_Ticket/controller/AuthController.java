@@ -2,6 +2,7 @@ package Football_Ticket.controller;
 
 import Football_Ticket.service.Impl.AuthServiceImpl;
 import jakarta.ws.rs.core.Response;
+import org.apache.catalina.User;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
@@ -21,6 +22,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Collections;
 import java.util.Map;
 
@@ -47,6 +49,18 @@ public class AuthController {
             @RequestParam String username,
             @RequestParam String password) {
         return authService.login(username, password);
+    }
+
+//    @GetMapping
+//    public ResponseEntity<List<UserRepresentation>> getAllUsers() {
+//        List<UserRepresentation> users = authService.fetchAllUsers();
+//        return ResponseEntity.ok(users);
+//    }
+
+    @GetMapping
+    public ResponseEntity<List> getAllUsers() {
+        List users = authService.fetchAllUsers().getBody();
+        return ResponseEntity.ok(users);
     }
 
 }
