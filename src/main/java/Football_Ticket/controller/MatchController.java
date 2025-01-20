@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/matches")
 public class MatchController {
+
     private final MatchServiceImpl matchServiceImpl;
 
     public MatchController(MatchServiceImpl matchServiceImpl) {

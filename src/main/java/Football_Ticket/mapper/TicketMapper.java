@@ -7,7 +7,6 @@ import Football_Ticket.model.SeatingSection;
 import Football_Ticket.model.Ticket;
 import org.springframework.stereotype.Component;
 
-import static org.springframework.data.jpa.domain.AbstractAuditable_.createdBy;
 
 @Component
 public class TicketMapper {
