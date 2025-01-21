@@ -10,6 +10,7 @@ import Football_Ticket.repository.MatchRepository;
 import Football_Ticket.repository.SeatingSectionRepository;
 import Football_Ticket.repository.TicketRepository;
 import Football_Ticket.service.TicketService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,6 +34,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Autowired
     private TicketMapper ticketMapper;
+
 
 
     public List<Ticket> getTicketsForLoggedInUser() {
