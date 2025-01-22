@@ -2,6 +2,9 @@ package Football_Ticket.controller;
 
 import Football_Ticket.Dto.MatchDTO;
 import Football_Ticket.service.Impl.MatchServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,15 @@ public class MatchController {
         this.matchServiceImpl = matchServiceImpl;
     }
 
+//    @Operation(summary = "Get all matches", description = "Retrieve all the available matches")
+//    @ApiResponses({
+//            @ApiResponse(responseCode = "200", description = "Successfully retrieved all matches"),
+//            @ApiResponse(responseCode = "404", description = "No matches found"),
+//            @ApiResponse(responseCode = "500", description = "Internal server error"),
+//            @ApiResponse(responseCode = "400", description = "Invalid request"),
+//            @ApiResponse(responseCode = "403", description = "Forbidden"),
+//            @ApiResponse(responseCode = "401", description = "Unauthorized")
+//    })
     @GetMapping
     public ResponseEntity<List<MatchDTO>> getAllMatches() {
         return ResponseEntity.ok(matchServiceImpl.getAllMatches());
@@ -27,7 +39,13 @@ public class MatchController {
 //        return ResponseEntity.ok(matchServiceImpl.getMatchById(id));
 //    }
 
-    @PostMapping
+//    @ApiResponse(responseCode = "200", description = "Match created successfully")
+//    @ApiResponse(responseCode = "404", description = "No matches found")
+//    @ApiResponse(responseCode = "500", description = "Internal server error")
+//    @ApiResponse(responseCode = "400", description = "Invalid request")
+//    @ApiResponse(responseCode = "403", description = "Forbidden")
+//    @ApiResponse(responseCode = "401", description = "Unauthorized")
+//    @PostMapping
     public ResponseEntity<MatchDTO> createMatch(@RequestBody MatchDTO matchDTO) {
         return ResponseEntity.ok(matchServiceImpl.createMatch(matchDTO));
     }
