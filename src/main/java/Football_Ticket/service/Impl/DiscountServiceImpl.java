@@ -30,7 +30,7 @@ public class DiscountServiceImpl implements DiscountService {
     public DiscountDTO createDiscount(CreateDiscountDTO dto){
         Discount discount = discountMapper.toEntity(dto);
         discount.setCreatedBy(getCurrentUserId());
-        discount.setPercentageBased(false);//remove this if nessecary
+        //discount.setPercentageBased(false);
         discount = discountRepository.save(discount);
         return  discountMapper.toDTO(discount);
     }

@@ -7,14 +7,12 @@ import com.stripe.model.Discount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/discount")
 public class DiscountController {
 
     private final DiscountService discountService;
@@ -22,7 +20,7 @@ public class DiscountController {
     public DiscountController(DiscountService discountService) {
         this.discountService = discountService;
     }
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<DiscountDTO> createDiscount(
             @RequestBody CreateDiscountDTO dto) {
         DiscountDTO discountDTO = discountService.createDiscount(dto);

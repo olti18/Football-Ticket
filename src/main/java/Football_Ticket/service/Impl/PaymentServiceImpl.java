@@ -119,6 +119,7 @@
             if ("succeeded".equals(paymentIntent.getStatus())) {
                 ticket.setPaid(true);
                 ticket.setBoughtBy(userId);
+                ticket.setStatus("ACTIVE");
                 ticketRepository.save(ticket);
             }
 
