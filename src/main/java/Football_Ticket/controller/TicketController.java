@@ -78,26 +78,3 @@ public class TicketController {
     }
 
 }
-// Tickets
-//{
-//        "id": 1,
-//        "userId": "7729cc1c-96f0-452f-926c-8a099cf16761",
-//        "event": {
-//        "id": 1,
-//        "name": "Test Event",
-//        "dateTime": "2024-12-20T09:43:16",
-//        "stadium": "Test Stadium",
-//        "availableTickets": 100
-//        },
-//        "price": 300,
-//        "valid": true
-//        }
-
-
-//{
-//        "id": 1,// remove this pls
-//        "name": "Test Event",
-//        "dateTime": "2024-12-20T09:43:16",
-//        "stadium": "Test Stadium",
-//        "availableTickets": 100
-//        }
