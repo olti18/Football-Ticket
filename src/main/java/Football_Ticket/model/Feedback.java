@@ -1,9 +1,13 @@
 package Football_Ticket.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "feedbacks")
 public class Feedback {
@@ -26,5 +30,7 @@ public class Feedback {
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+
 }
 

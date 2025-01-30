@@ -22,12 +22,7 @@ public class DiscountMapper {
         return discount;
     }
 
-    /**
-     * Maps a Discount entity to a DiscountDTO.
-     *
-     * @param discount the Discount entity to map.
-     * @return a DiscountDTO.
-     */
+
     public DiscountDTO toDTO(Discount discount) {
         DiscountDTO dto = new DiscountDTO();
         dto.setId(discount.getId());
