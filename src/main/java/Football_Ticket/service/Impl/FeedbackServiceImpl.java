@@ -14,8 +14,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class FeedbackServiceImpl {
+
     private final FeedbackRepository feedbackRepository;
     private final MatchRepository matchRepository;
     private final FeedbackMapper feedbackMapper;
@@ -35,6 +39,16 @@ public class FeedbackServiceImpl {
         Feedback feedback = feedbackMapper.toEntity(dto,match);
         feedbackRepository.save(feedback);
         return feedbackMapper.toDTO(feedback);
+    }
+
+    public List<Feedback> getFeedbacksByCurrentUser(){
+        String currentUserId = getCurrentUserId();
+        List<Feedback> allFeedbacks = feedbackRepository.findAll();
+
+        // Filter feedbacks for the current user
+        return allFeedbacks.stream()
+                .filter(feedback -> feedback.getUserId().equals(currentUserId))
+                .collect(Collectors.toList());
     }
 
     private String getCurrentUserId() {
