@@ -22,7 +22,8 @@ public class FeedbackController {
     public List<Feedback> getFeedbacksByCurrentUser() {
         return feedbackService.getFeedbacksByCurrentUser();
     }
-    @PostMapping
+
+    @PostMapping("/feedbacks/CreateFeedback")
     public ResponseEntity<FeedbackDTO> CreateFeedback(@RequestBody CreateFeedbackDTO dto){
         return ResponseEntity.ok(feedbackService.createFeedback(dto));
     }

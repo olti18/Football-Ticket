@@ -1,6 +1,9 @@
 package Football_Ticket.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.ExchangeStrategies;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -15,4 +18,24 @@ public class WebConfig  implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
+
+//    @Bean
+//    public WebClient webClient() {
+//        return WebClient.builder()
+//                    .baseUrl("https://v3.football.api-sports.io")
+//                    .defaultHeader("x-apisports-key", "5c403916b0d934c071213dc0c7b4886e")
+//                    .build();
+//    }
+
+    @Bean
+    public WebClient webClient() {
+        return WebClient.builder()
+                .baseUrl("https://v3.football.api-sports.io")
+                .defaultHeader("x-apisports-key", "5c403916b0d934c071213dc0c7b4886e")
+                .exchangeStrategies(ExchangeStrategies.builder()
+                        .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)) // 10MB
+                        .build())
+                .build();
+    }
+
 }
