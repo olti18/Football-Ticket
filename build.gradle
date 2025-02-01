@@ -83,6 +83,14 @@ dependencies {
 	/////////
 	implementation"org.keycloak:keycloak-admin-client:22.0.1"
 	//new
+
+
+	// https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+	implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.14'
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation 'org.json:json:20250107'
+
+
 	// iText for PDF Generation
 //	implementation 'com.itextpdf:itextpdf:5.5.13.4'
 //	implementation 'com.itextpdf:layout:5.5.13.4'
