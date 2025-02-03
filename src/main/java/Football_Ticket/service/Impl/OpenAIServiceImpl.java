@@ -23,7 +23,7 @@ public class OpenAIServiceImpl {
 
 //    @Value("${openai.api.key}")
 //    private String apiKey;
-//private String apiKey ="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";
+private String apiKey ="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";
 //private String apiKey="";
 
     private static final String CHAT_API_URL = "https://api.openai.com/v1/chat/completions";
