@@ -69,7 +69,7 @@ Ensure you have the following installed:
 | POST | `/tickets/book` | Book a ticket |
 | POST | `/payments/checkout` | Process payment with Stripe |
 
-For detailed API documentation, visit `http://localhost:8080/swagger-ui.html`.
+For detailed API documentation, visit `http://localhost:3000/football-ticket/swagger-ui.html`.
 
 ## License
 This project is open-source and available under the **MIT License**.
