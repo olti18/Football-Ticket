@@ -18,8 +18,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tickets")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class TicketController {
-
     @Autowired
     private TicketServiceImpl ticketService;
 
@@ -47,6 +47,7 @@ public class TicketController {
    }
 
     // Get all tickets
+
     @GetMapping
     public ResponseEntity<List<TicketDTO>> getAllTickets() {
         return ResponseEntity.ok(ticketService.getAllTickets());
