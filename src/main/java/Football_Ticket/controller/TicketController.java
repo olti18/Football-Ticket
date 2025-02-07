@@ -2,6 +2,7 @@ package Football_Ticket.controller;
 
 
 import Football_Ticket.Dto.TicketDTO;
+import Football_Ticket.Dto.TicketResponseDTO;
 import Football_Ticket.model.Ticket;
 import Football_Ticket.service.Impl.PaymentServiceImpl;
 import Football_Ticket.service.Impl.TicketServiceImpl;
@@ -26,6 +27,12 @@ public class TicketController {
     @Autowired
     private PaymentServiceImpl paymentService;
 
+    @GetMapping
+    public ResponseEntity<List<TicketResponseDTO>> getAllTicketss() {
+        List<TicketResponseDTO> tickets = ticketService.getAllTicketsWithMatchName();
+        return ResponseEntity.ok(tickets);
+    }
+
     @GetMapping("/purchased")
     public ResponseEntity<List<Ticket>> getPurchasedTickets() {
         try {
@@ -48,10 +55,10 @@ public class TicketController {
 
     // Get all tickets
 
-    @GetMapping
-    public ResponseEntity<List<TicketDTO>> getAllTickets() {
-        return ResponseEntity.ok(ticketService.getAllTickets());
-    }
+//    @GetMapping
+//    public ResponseEntity<List<TicketDTO>> getAllTickets() {
+//        return ResponseEntity.ok(ticketService.getAllTickets());
+//    }
 
 //    // Get ticket by ID
 //    @GetMapping("/{id}")

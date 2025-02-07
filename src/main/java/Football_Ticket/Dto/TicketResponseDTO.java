@@ -1,6 +1,6 @@
 package Football_Ticket.Dto;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,23 +9,18 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Data
-public class TicketDTO {
-
+@AllArgsConstructor
+public class TicketResponseDTO {
     private String id;
-    private String matchId;
+    private String matchName;
     private String seatingSectionId;
     private String seatNumber;
     private BigDecimal price;
-    private boolean isPaid;
     private LocalDateTime purchaseDate;
     private String qrCode;
     private String status;
     private String createdBy;
     private LocalDateTime createdAt;
-
-    // adedd
-//    private String homeTeam;        // Add this field
-//    private String awayTeam;        // Add this field
-//    private String matchName;       // Add this field
+    private boolean isPaid;
 }
+

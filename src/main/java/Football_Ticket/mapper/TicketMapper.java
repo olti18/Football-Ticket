@@ -21,6 +21,7 @@ public class TicketMapper {
         return ticket;
     }
 
+
     public TicketDTO toDTO(Ticket ticket) {
         TicketDTO dto = new TicketDTO();
         dto.setId(ticket.getId());

@@ -2,6 +2,7 @@ package Football_Ticket.service.Impl;
 
 import Football_Ticket.Dto.CreateTicketDTO;
 import Football_Ticket.Dto.TicketDTO;
+import Football_Ticket.Dto.TicketResponseDTO;
 import Football_Ticket.mapper.TicketMapper;
 import Football_Ticket.model.Match;
 import Football_Ticket.model.SeatingSection;
@@ -36,6 +37,7 @@ public class TicketServiceImpl implements TicketService {
     private TicketMapper ticketMapper;
 
 
+    // ... existing code ...
 
     public List<Ticket> getTicketsForLoggedInUser() {
         String userId = getCurrentUserId();
@@ -71,12 +73,18 @@ public class TicketServiceImpl implements TicketService {
     }
 
 
-    // Get all tickets
-    public List<TicketDTO> getAllTickets() {
-        return ticketRepository.findAll().stream()
-                .map(ticketMapper::toDTO)
-                .collect(Collectors.toList());
+
+
+     // Get all tickets
+    public List<TicketResponseDTO> getAllTicketsWithMatchName() {
+        return ticketRepository.getTicketsWithMatchDetails();
     }
+
+//    public List<TicketDTO> getAllTickets() {
+//        return ticketRepository.findAll().stream()
+//                .map(ticketMapper::toDTO)
+//                .collect(Collectors.toList());
+//    }
 
     // Get ticket by ID
     public TicketDTO getTicketById(String id) {
