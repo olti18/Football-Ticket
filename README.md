@@ -67,7 +67,7 @@ Ensure you have the following installed:
 | POST   | /auth/login | User login |
 | POST   | /auth/register | User registration |
 | GET    | /tickets | Get available tickets |
-| POST   | /tickets/book | Book a ticket |
+| POST   | /tickets/Buy | Book a ticket |
 | POST   | /payments/checkout | Process payment with Stripe |
 
 For detailed API documentation, visit [Swagger UI](http://localhost:3000/football-ticket/swagger-ui.html).
