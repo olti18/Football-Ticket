@@ -72,14 +72,12 @@ Ensure you have the following installed:
 
 For detailed API documentation, visit [Swagger UI](http://localhost:3000/football-ticket/swagger-ui.html).
 
-## License
-This project is open-source and available under the MIT License.
 
 ## Contributing
 Contributions are welcome! Feel free to fork the repo and submit pull requests.
 
 ## Contact
-For any inquiries, reach out via [your email] or open an issue in the repository.
+For any inquiries, reach out via oltiberisha61@gmail.com or open an issue in the repository.
 
 
 
